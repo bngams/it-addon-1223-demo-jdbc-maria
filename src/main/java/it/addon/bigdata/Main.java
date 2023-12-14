@@ -4,8 +4,10 @@ import it.addon.bigdata.controllers.MenuController;
 import it.addon.bigdata.data.dao.ContactDAO;
 import it.addon.bigdata.data.query.Query;
 import it.addon.bigdata.data.source.DBConnection;
+import it.addon.bigdata.data.source.HibernateClient;
 import it.addon.bigdata.models.Contact;
 import it.addon.bigdata.services.ContactService;
+import org.hibernate.SessionFactory;
 
 import javax.xml.transform.Result;
 import java.sql.*;
@@ -14,7 +16,16 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        withController();
+        withHibernate();
+        withoutController();
+    }
+
+    static void withHibernate() {
+        SessionFactory sf = HibernateClient.getSession();
+        sf.inTransaction(session -> {
+            session.persist(new Contact(null, "Name 1"));
+            session.persist(new Contact(null, "Name 2"));
+        });
     }
 
     static void withController() {

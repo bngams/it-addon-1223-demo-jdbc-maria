@@ -20,7 +20,8 @@ public class MenuController {
         if(choice == 0) {
             System.out.println("Welcome!!!");
         } else if (choice == 1){
-            new ContactController();
+            ContactController ct = new ContactController();
+            ct.findAllContacts();
         } else {
             System.out.println("404");
         }

@@ -9,13 +9,18 @@ import java.util.List;
 
 public class ContactController {
 
+    private final ContactService cs;
+
     public ContactController() {
+        this.cs = new ContactService();
+    }
+
+    public void findAllContacts() {
         try {
             // classes données
             List<Contact> contacts = ContactDAO.findAll(0);
             // classes services
-            ContactService cs = new ContactService();
-            List<Contact> contactsFromService  =cs.findAllContacts(0);
+            List<Contact> contactsFromService  = this.cs.findAllContacts(0);
             System.out.println("Done");
         } catch (SQLException e) {
             throw new RuntimeException(e);
