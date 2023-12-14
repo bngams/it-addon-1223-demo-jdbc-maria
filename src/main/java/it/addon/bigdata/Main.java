@@ -1,44 +1,35 @@
 package it.addon.bigdata;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import it.addon.bigdata.controllers.MenuController;
+import it.addon.bigdata.data.dao.ContactDAO;
+import it.addon.bigdata.data.query.Query;
+import it.addon.bigdata.data.source.DBConnection;
+import it.addon.bigdata.models.Contact;
+import it.addon.bigdata.services.ContactService;
+
+import javax.xml.transform.Result;
 import java.sql.*;
-import java.util.Properties;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        // Create properties object manually
-        // Properties connConfig = new Properties();
-        // connConfig.setProperty("user", "db_user");
-        // connConfig.setProperty("password", "db_user_password");
+        withController();
+    }
 
+    static void withController() {
+        new MenuController();
+    }
+
+    static void withoutController() {
         try {
-            // Charger la config
-            InputStream input = Main.class.getClassLoader().getResourceAsStream("config.properties");
-            Properties connConfig = new Properties();
-            connConfig.load(input);
-
-            // Initialiser la connexion
-            Connection conn = DriverManager.getConnection(
-                    connConfig.getProperty("db"), connConfig);
-
-            // Traitement
-            Statement stmt = conn.createStatement();
-            // Req en BDD
-            String req = "SELECT * FROM `contacts` LIMIT 50;";
-            // Execute query
-            ResultSet rs = stmt.executeQuery(req);
-            // Display
-            while(rs.next()) {
-                System.out.println(rs.getInt("id") + " - " + rs.getString("name"));
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+            // classes données
+            List<Contact> contacts = ContactDAO.findAll(0);
+            // classes services
+            ContactService cs = new ContactService();
+            cs.findAllContacts(0);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
-
     }
 }
