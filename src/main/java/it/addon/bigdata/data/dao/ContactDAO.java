@@ -1,7 +1,7 @@
 package it.addon.bigdata.data.dao;
 
 import it.addon.bigdata.data.query.Query;
-import it.addon.bigdata.models.Contact;
+import it.addon.bigdata.entities.Contact;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

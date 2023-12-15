@@ -1,7 +1,7 @@
 package it.addon.bigdata.controllers;
 
 import it.addon.bigdata.data.dao.ContactDAO;
-import it.addon.bigdata.models.Contact;
+import it.addon.bigdata.entities.Contact;
 import it.addon.bigdata.services.ContactService;
 
 import java.sql.SQLException;

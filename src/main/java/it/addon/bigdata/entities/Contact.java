@@ -1,4 +1,4 @@
-package it.addon.bigdata.models;
+package it.addon.bigdata.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -6,8 +6,10 @@ import lombok.Data;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
+// JPA
 @Entity
 @Table(name = "contacts")
+// Lombok
 @Data
 @AllArgsConstructor
 @RequiredArgsConstructor

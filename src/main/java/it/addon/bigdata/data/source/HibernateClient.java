@@ -1,6 +1,6 @@
 package it.addon.bigdata.data.source;
 
-import it.addon.bigdata.models.Contact;
+import it.addon.bigdata.entities.Contact;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
@@ -10,7 +10,7 @@ public class HibernateClient {
 
     private static SessionFactory sessionFactory;
 
-    public static SessionFactory getSession() {
+    public static SessionFactory getFactory() {
         if(sessionFactory == null) {
             setUp();
         }
