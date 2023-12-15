@@ -12,15 +12,23 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        withHibernate();
-        withoutController();
+        findWithHibernate();
+        // withoutController();
     }
 
-    static void withHibernate() {
+    static void findWithHibernate() {
         SessionFactory sf = HibernateClient.getFactory();
         sf.inTransaction(session -> {
-            session.persist(new Contact(null, "Name 1"));
-            session.persist(new Contact(null, "Name 2"));
+            var contacts = session.createSelectionQuery("from Contact", Contact.class).getResultList();
+            System.out.println(contacts);
+        });
+    }
+
+    static void insertWithHibernate() {
+        SessionFactory sf = HibernateClient.getFactory();
+        sf.inTransaction(session -> {
+            session.persist(new Contact( "Name 1"));
+            session.persist(new Contact( "Name 2"));
         });
     }
 

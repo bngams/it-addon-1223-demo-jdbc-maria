@@ -1,16 +1,14 @@
 package it.addon.bigdata.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 // JPA
 @Entity
 @Table(name = "contacts")
 // Lombok
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 @RequiredArgsConstructor
 public class Contact {
